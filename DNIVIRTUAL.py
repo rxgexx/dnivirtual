@@ -11,6 +11,12 @@ def dnivir_menores(dni):
 
     response = requests.get(url)
     resultado = response.json()
+    
+    # Verificar si la clave "foto" existe en el objeto JSON
+    if "foto" not in resultado:
+        # Si la clave "foto" no existe, enviar una respuesta JSON indicando que no existe foto
+         respuesta = {"mensaje": "No existe foto para el DNI consultado"}
+         return respuesta
 
     if resultado == "El DNI no se encuentra registrado en la Base de Datos de Reniec":
         return resultado
@@ -441,6 +447,13 @@ def dnivir(dni):
 
         response = requests.get(url)
         resultado = response.json()
+        
+            # Verificar si la clave "foto" existe en el objeto JSON
+        if "foto" not in resultado:
+        # Si la clave "foto" no existe, enviar una respuesta JSON indicando que no existe foto
+                respuesta = {"mensaje": "No existe foto para el DNI consultado"}
+                return respuesta
+        
     except Exception as e:
         resultado = "EL SERVICIO DE RENIEC ESTA EN MANTENIMIENTO"
 
